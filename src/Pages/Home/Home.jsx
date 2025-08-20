@@ -8,7 +8,7 @@ function Home() {
         let {
             data: { message, posts, paginationInfo },
         } = await axios.get(
-            "https://linked-posts.routemisr.com/posts?limit=50&sort=created_at",
+            "https://linked-posts.routemisr.com/posts?limit=50&sort=-createdAt",
             {
                 headers: {
                     token: localStorage.getItem("userToken"),

@@ -14,7 +14,7 @@ export default function EditeProfile() {
     const {
         register,
         handleSubmit,
-        // formState: { errors },
+        formState: { errors },
     } = useForm(
     //     {
     //     resolver: zodResolver(schema),
@@ -24,10 +24,12 @@ export default function EditeProfile() {
     async function updateUserPhoto(val) {
         const formdata = new FormData();
         formdata.append("photo", val.photo[0]);
+        console.log(val.photo[0]);
         let res = await axios.put(
             "https://linked-posts.routemisr.com/users/upload-photo",
             formdata,
             {
+                timeout: 20000,
                 headers: {
                     token: localStorage.getItem("userToken"),
                 },
@@ -36,6 +38,8 @@ export default function EditeProfile() {
         if (res.data.message === "success") {
             toast.success("Photo updated successfully");
             fetchUserData(localStorage.getItem("userToken"));
+        }else{
+            toast.error(`Failed to update photo${res.data.message ? `: ${res.data.message}` : ''}`);
         }
     }
     return (
