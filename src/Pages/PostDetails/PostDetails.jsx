@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import NewComment from "../../Components/NewComment/NewComment.jsx";
 function PostDetails() {
     const params = useParams();
     const postId = params.id;
@@ -126,6 +127,7 @@ function PostDetails() {
                             <p className="text-gray-500 dark:text-gray-300">
                                 {data.comments.length} Comments
                             </p>
+                            <NewComment postId={data._id} />
                             {data.comments.map((comment) => {
                                 let {
                                     _id,

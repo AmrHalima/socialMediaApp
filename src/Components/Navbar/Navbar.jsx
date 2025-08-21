@@ -13,11 +13,7 @@ function Navbar() {
                     to="/"
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
-                    <img
-                        src="/logo.png"
-                        className="h-8"
-                        alt="Logo"
-                    />
+                    <img src="/logo.png" className="h-8" alt="Logo" />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                         Social Media App
                     </span>
@@ -50,7 +46,7 @@ function Navbar() {
                     className="hidden w-full md:block md:w-auto"
                     id="navbar-default"
                 >
-                    {user ? (
+                    {user && Object.keys(user).length > 0 ? (
                         <>
                             <div className="relative">
                                 {user.photo ? (
@@ -124,11 +120,16 @@ function Navbar() {
                                             </li>
                                         </ul>
                                         <div className="py-1">
-                                            <button className=" w-full block pe-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-red-500" onClick={() => {
-                                                setDropdownOpen(false);
-                                                setUser(null);
-                                                localStorage.removeItem("userToken");
-                                            }}>
+                                            <button
+                                                className=" w-full block pe-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-red-500"
+                                                onClick={() => {
+                                                    setDropdownOpen(false);
+                                                    setUser({});
+                                                    localStorage.removeItem(
+                                                        "userToken"
+                                                    );
+                                                }}
+                                            >
                                                 <i className="fas fa-sign-out pe-2"></i>
                                                 <span>Sign Out</span>
                                             </button>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import NewPost from "../../Components/NewPost/NewPost";
+import NewComment from "../../Components/NewComment/NewComment";
 
 function Home() {
     const { isLoading, data, error, isError } = useQuery({
@@ -32,7 +33,7 @@ function Home() {
             {isError && toast.error(error.message)}
             {!isLoading ? (
                 <ul className="space-y-4">
-                    {data.map(
+                    {data?.map(
                         ({
                             _id,
                             body,
@@ -43,7 +44,6 @@ function Home() {
                         }) => (
                             <li
                                 key={_id}
-                                role="status"
                                 className="p-4 bg-white rounded-sm shadow-sm md:p-6 dark:bg-gray-500"
                             >
                                 <div className="flex items-center mt-4 gap-y-2">
@@ -105,6 +105,7 @@ function Home() {
                                     )}
                                 </div>
 
+                                <NewComment postId={_id} />
                                 <div className="flex items-center justify-between">
                                     {comments.length > 0 && (
                                         <>
