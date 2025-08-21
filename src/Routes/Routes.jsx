@@ -7,6 +7,8 @@ import NotFound from "../Shared/NotFound/NotFound";
 import ProtectRoute from "./ProtectRoute";
 import AuthRoute from "./AuthRoute";
 import EditeProfile from "../Pages/EditProfile/EditeProfile";
+import PostDetails from "../Pages/PostDetails/PostDetails";
+
 const router = createBrowserRouter([
     {
         path: "",
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectRoute>
                         <EditeProfile />
+                    </ProtectRoute>
+                ),
+            },
+            {
+                path: "post-details/:id",
+                element: (
+                    <ProtectRoute>
+                        <PostDetails />
                     </ProtectRoute>
                 ),
             },

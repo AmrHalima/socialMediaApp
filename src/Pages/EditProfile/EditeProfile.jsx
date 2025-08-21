@@ -15,11 +15,10 @@ export default function EditeProfile() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm(
+    } = useForm();
     //     {
     //     resolver: zodResolver(schema),
     // }
-);
     const { fetchUserData } = useContext(UserContext);
     async function updateUserPhoto(val) {
         const formdata = new FormData();
@@ -38,8 +37,12 @@ export default function EditeProfile() {
         if (res.data.message === "success") {
             toast.success("Photo updated successfully");
             fetchUserData(localStorage.getItem("userToken"));
-        }else{
-            toast.error(`Failed to update photo${res.data.message ? `: ${res.data.message}` : ''}`);
+        } else {
+            toast.error(
+                `Failed to update photo${
+                    res.data.message ? `: ${res.data.message}` : ""
+                }`
+            );
         }
     }
     return (
@@ -49,7 +52,7 @@ export default function EditeProfile() {
         >
             <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
             >
                 <div className="flex flex-col items-center justify-center pt-5 pb-6 ">
                     <svg
@@ -83,11 +86,11 @@ export default function EditeProfile() {
                 />
             </label>
             <button
-                    type="submit"
-                    className=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                    Upload Photo
-                </button>
+                type="submit"
+                className=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+                Upload Photo
+            </button>
         </form>
     );
 }
